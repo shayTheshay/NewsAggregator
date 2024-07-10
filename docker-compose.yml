@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  manager:
+    image: ${DOCKER_REGISTRY-}manager
+    build:
+      context: .
+      dockerfile: Manager/Dockerfile
+

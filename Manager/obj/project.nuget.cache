@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WpniYi33Wuc=",
+  "dgSpecHash": "xFe85jmI/pk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\NewsAggregator\\Manager\\Manager.csproj",
+  "projectFilePath": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Manager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shays\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\shays\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
