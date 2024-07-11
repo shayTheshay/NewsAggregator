@@ -7,16 +7,16 @@
       "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\models\\useremailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\models\\useremailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\manager.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
       "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\manager.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\manager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -54,24 +54,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{f5cd1b51-c771-5648-966f-646d419b1e7c}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserEmailRequest.cs",
-              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Models\\UserEmailRequest.cs",
-              "RelativeDocumentMoniker": "Manager\\Models\\UserEmailRequest.cs",
-              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Models\\UserEmailRequest.cs",
-              "RelativeToolTip": "Manager\\Models\\UserEmailRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T12:16:16.289Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -81,9 +68,22 @@
               "RelativeDocumentMoniker": "Manager\\Controllers\\UserController.cs",
               "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Controllers\\UserController.cs",
               "RelativeToolTip": "Manager\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABAAAAAJAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACQAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-09T21:37:42.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserEmailRequest.cs",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Models\\UserEmailRequest.cs",
+              "RelativeDocumentMoniker": "Manager\\Models\\UserEmailRequest.cs",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Models\\UserEmailRequest.cs",
+              "RelativeToolTip": "Manager\\Models\\UserEmailRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T12:16:16.289Z",
               "EditorCaption": ""
             },
             {
@@ -122,7 +122,8 @@
               "RelativeToolTip": "Manager\\Properties\\launchSettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-07-09T20:55:57.812Z"
+              "WhenOpened": "2024-07-09T20:55:57.812Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -138,7 +139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Program.cs",
               "RelativeDocumentMoniker": "Manager\\Program.cs",
@@ -159,7 +160,8 @@
               "RelativeToolTip": "Manager\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-07-09T20:55:51.941Z"
+              "WhenOpened": "2024-07-09T20:55:51.941Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -184,11 +186,12 @@
               "RelativeToolTip": "docker-compose.yml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2024-07-09T21:09:20.743Z"
+              "WhenOpened": "2024-07-09T21:09:20.743Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Manager.http",
               "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Manager.http",
               "RelativeDocumentMoniker": "Manager\\Manager.http",

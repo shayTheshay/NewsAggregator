@@ -1,6 +1,6 @@
 ﻿using Manager.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel.DataAnnotations;
+using Dapr.Client;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,11 +11,13 @@ namespace Manager.Controllers
     public class UserController : ControllerBase
     {
 
-        private ILogger <UserController>_logger;
+        private readonly ILogger <UserController> _logger;
+        private readonly DaprClient _client;
 
-        public UserController(ILogger<UserController> logger)
+        public UserController(ILogger<UserController> logger, Dapr.Client.DaprClient client)
         {
             _logger = logger;
+            _client = client;
         }
 
         [HttpPatch("/SetPreferences")]
