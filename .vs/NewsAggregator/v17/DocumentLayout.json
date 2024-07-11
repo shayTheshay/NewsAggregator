@@ -1,7 +1,52 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\NewsAggregator\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\models\\useremailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\models\\useremailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\manager.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\manager.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\manager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\manager.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F00ABD7-4AA9-4845-9932-9F8B9616020A}|docker-compose.dcproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\docker-compose.dcproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1F00ABD7-4AA9-4845-9932-9F8B9616020A}|docker-compose.dcproj|solutionrelative:docker-compose.dcproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1F00ABD7-4AA9-4845-9932-9F8B9616020A}|docker-compose.dcproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{1F00ABD7-4AA9-4845-9932-9F8B9616020A}|docker-compose.dcproj|solutionrelative:docker-compose.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\manager.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\manager.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|c:\\users\\shays\\desktop\\tsionetprojects\\finalprojecttsionet\\manager\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{289F5FFC-F13F-494D-8F58-2C0366F87F4B}|Manager\\Manager.csproj|solutionrelative:manager\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +54,153 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{f5cd1b51-c771-5648-966f-646d419b1e7c}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Manager\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Manager\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T21:37:42.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserEmailRequest.cs",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Models\\UserEmailRequest.cs",
+              "RelativeDocumentMoniker": "Manager\\Models\\UserEmailRequest.cs",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Models\\UserEmailRequest.cs",
+              "RelativeToolTip": "Manager\\Models\\UserEmailRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T12:16:16.289Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Manager.csproj",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Manager.csproj",
+              "RelativeDocumentMoniker": "Manager\\Manager.csproj",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Manager.csproj",
+              "RelativeToolTip": "Manager\\Manager.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-07-09T20:56:23.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "docker-compose.dcproj",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\docker-compose.dcproj",
+              "RelativeDocumentMoniker": "docker-compose.dcproj",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\docker-compose.dcproj",
+              "RelativeToolTip": "docker-compose.dcproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-09T20:58:35.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Manager\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Manager\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-09T20:55:57.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Manager",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Manager.csproj",
+              "RelativeDocumentMoniker": "Manager\\Manager.csproj",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Manager.csproj",
+              "RelativeToolTip": "Manager\\Manager.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-07-09T20:55:54.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Program.cs",
+              "RelativeDocumentMoniker": "Manager\\Program.cs",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Program.cs",
+              "RelativeToolTip": "Manager\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T20:52:57.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\appsettings.json",
+              "RelativeDocumentMoniker": "Manager\\appsettings.json",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\appsettings.json",
+              "RelativeToolTip": "Manager\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-09T20:55:51.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Dockerfile",
+              "RelativeDocumentMoniker": "Manager\\Dockerfile",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Dockerfile",
+              "RelativeToolTip": "Manager\\Dockerfile",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-09T20:55:43.673Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "docker-compose.yml",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\docker-compose.yml",
+              "RelativeDocumentMoniker": "docker-compose.yml",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\docker-compose.yml",
+              "RelativeToolTip": "docker-compose.yml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2024-07-09T21:09:20.743Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Manager.http",
+              "DocumentMoniker": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Manager.http",
+              "RelativeDocumentMoniker": "Manager\\Manager.http",
+              "ToolTip": "C:\\Users\\shays\\Desktop\\TsionetProjects\\FinalProjectTsionet\\Manager\\Manager.http",
+              "RelativeToolTip": "Manager\\Manager.http",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2024-07-09T20:53:23.212Z",
+              "EditorCaption": ""
             }
           ]
         }
