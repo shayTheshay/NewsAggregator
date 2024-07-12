@@ -1,0 +1,138 @@
+name: dockercompose3739172531807127721
+services:
+  manager:
+    build:
+      context: C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet
+      dockerfile: Manager/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "4003"
+      ASPNETCORE_HTTPS_PORTS: "9080"
+    image: manager
+    networks:
+      network-dapr: null
+    ports:
+      - mode: ingress
+        target: 4003
+        protocol: tcp
+      - mode: ingress
+        target: 9080
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+  manager-dapr:
+    command:
+      - ./daprd
+      - --app-id
+      - manager
+      - -app-protocol
+      - http
+      - --app-port
+      - "3000"
+      - --dapr-http-port
+      - "3500"
+      - --placement-host-address
+      - placement:50006
+      - components-path
+      - /dapr/components
+      - config
+      - /dapr/config.yaml
+    depends_on:
+      manager:
+        condition: service_started
+        required: true
+    image: daprio/daprd:edge
+    network_mode: service:manager
+    volumes:
+      - type: bind
+        source: C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\dapr
+        target: /dapr
+        bind:
+          create_host_path: true
+  placement:
+    command:
+      - ./placement
+      - --port
+      - "50006"
+    image: daprio/dapr
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 50006
+        published: "50006"
+        protocol: tcp
+  useraccessor:
+    build:
+      context: C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet
+      dockerfile: UserAccessor/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_HTTP_PORTS: "3002"
+      ASPNETCORE_HTTPS_PORTS: "8082"
+    image: useraccessor
+    networks:
+      network-dapr: null
+    ports:
+      - mode: ingress
+        target: 3002
+        protocol: tcp
+      - mode: ingress
+        target: 8082
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+  useraccessor-dapr:
+    command:
+      - ./daprd
+      - --app-id
+      - useraccessor
+      - -app-protocol
+      - http
+      - --app-portd
+      - "3002"
+      - --placement-host-address
+      - placement:50006
+      - dapr run\ --enable-api-logging "components-path"
+      - /dapr/components
+      - config
+      - /dapr/config.yaml
+    depends_on:
+      useraccessor:
+        condition: service_started
+        required: true
+    image: daprio/daprd:edge
+    network_mode: service:useraccessor
+    volumes:
+      - type: bind
+        source: C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\dapr
+        target: /dapr
+        bind:
+          create_host_path: true
+networks:
+  default:
+    name: dockercompose3739172531807127721_default
+  network-dapr:
+    name: dockercompose3739172531807127721_network-dapr

@@ -5,6 +5,13 @@ C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Manager.runtimeconfig.json
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Manager.dll
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Manager.pdb
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Dapr.AspNetCore.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Dapr.Client.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Google.Api.CommonProtos.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Google.Protobuf.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Grpc.Core.Api.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Grpc.Net.Client.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Grpc.Net.Common.dll
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\Manager\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll

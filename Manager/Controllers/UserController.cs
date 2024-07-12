@@ -8,56 +8,31 @@ namespace Manager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController(ILogger<UserController> logger, Dapr.Client.DaprClient daprClient) : ControllerBase
     {
 
-        private readonly ILogger <UserController> _logger;
-        private readonly DaprClient _client;
 
-        public UserController(ILogger<UserController> logger, Dapr.Client.DaprClient client)
-        {
-            _logger = logger;
-            _client = client;
-        }
+        private readonly ILogger <UserController> _logger = logger;
+        private readonly DaprClient _daprclient = daprClient;
 
-        [HttpPatch("/SetPreferences")]
-        public string SetPreferences(UserEmailPreferenceRequest requestUserValues)
+        [HttpGet("SetPreferences")]
+        public async Task<ActionResult<string>> SetPreferences(string str)//UserEmailPreferenceRequest requestUserValues)
         {
             try
             {
+                var response = await _daprclient.InvokeMethodAsync<List<string>>(HttpMethod.Get, "useraccessor", "/preferences");
+                
 
-                //Check if the strings gotten are compliant with what I want like sport, science etc...
-
-
-                //check if the userEmail doesn't exist, if it does not than make one and then set the preferences. This happens on UserAccessor
-
-                return "Your preferences were set!";
+                return Ok(response);
             }
             catch (Exception ex)
             {
-                _logger.LogInformation("SetPreferences error: " + ex.Message);
-                return ex.Message;
+                _logger.LogError("SetPreferences error: " + ex.Message);
+                return Problem("There was a problem: " + ex.Message);
 
             }
         }
 
-        
-
-        [HttpGet("/GetYourPreferences")]
-        public string getPreferences(string email)
-        {
-            try
-            {
-                return "Here are your preferences!";
-            }
-            catch (Exception ex)
-            {
-                _logger.LogInformation("GettingPreferences error: " + ex.Message);
-                return ex.Message;
-
-            }
-            //Check for the email through accesssor -> if exists one
-        }
 
 
         [HttpGet("/LatestNews")]
@@ -70,7 +45,7 @@ namespace Manager.Controllers
 
             catch (Exception ex)
             {
-                _logger.LogInformation("LatestNews error: " + ex.Message);
+                _logger.LogError("LatestNews error: " + ex.Message);
                 return ex.Message;
             }
         }
@@ -93,11 +68,13 @@ namespace Manager.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogInformation("DeleteUser error: " + ex.Message);
+                _logger.LogError("DeleteUser error: " + ex.Message);
                 return ex.Message;
             }
 
         }
+
+
  
 
     }
