@@ -4,30 +4,75 @@ services:
     build:
       context: C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet
       dockerfile: Manager/Dockerfile
+      args:
+        BUILD_CONFIGURATION: Release
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: Manager
+    container_name: Manager_1
+    entrypoint:
+      - dotnet
+      - --roll-forward
+      - Major
+      - /VSTools/DistrolessHelper/DistrolessHelper.dll
+      - --wait
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_HTTP_PORTS: "8080"
-      ASPNETCORE_HTTPS_PORTS: "8081"
+      ASPNETCORE_URLS: http://+:80
     image: manager
+    labels:
+      com.microsoft.visual-studio.project-name: Manager
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /.nuget/packages --additionalProbingPath /.nuget/fallbackpackages  "/app/Manager.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: dotnet --roll-forward Major /VSTools/DistrolessHelper/DistrolessHelper.dll --stop dotnet
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
     networks:
       network-dapr: null
     ports:
       - mode: ingress
-        target: 8080
+        target: 80
+        published: "9020"
         protocol: tcp
-      - mode: ingress
-        target: 8081
-        protocol: tcp
+    tty: true
     volumes:
       - type: bind
-        source: C:\Users\shays\AppData\Roaming/Microsoft/UserSecrets
+        source: C:\Users\shays\AppData\Roaming\Microsoft\UserSecrets
         target: /home/app/.microsoft/usersecrets
         read_only: true
         bind:
           create_host_path: true
       - type: bind
-        source: C:\Users\shays\AppData\Roaming/ASP.NET/Https
+        source: C:\Users\shays\AppData\Roaming\ASP.NET\Https
         target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shays\vsdbg\vs2017u5
+        target: /remote_debugger
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming\ASP.NET\Https
+        target: /root/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming\Microsoft\UserSecrets
+        target: /root/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\linux-x64\net8.0
+        target: /VSTools
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\HotReload
+        target: /HotReloadAgent
         read_only: true
         bind:
           create_host_path: true
@@ -39,13 +84,15 @@ services:
       - -app-protocol
       - http
       - --app-port
-      - "3000"
+      - "80"
       - --dapr-http-port
       - "3500"
-      - components-path
-      - ./dapr/components
+      - --placement-host-address
+      - placement:50006
+      - dapr run\ --enable-api-logging "components-path"
+      - /dapr/components
       - config
-      - ./dapr/config.yaml
+      - /dapr/config.yaml
     depends_on:
       manager:
         condition: service_started
@@ -62,30 +109,75 @@ services:
     build:
       context: C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet
       dockerfile: UserAccessor/Dockerfile
+      args:
+        BUILD_CONFIGURATION: Release
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: UserAccessor
+    container_name: UserAccessor
+    entrypoint:
+      - dotnet
+      - --roll-forward
+      - Major
+      - /VSTools/DistrolessHelper/DistrolessHelper.dll
+      - --wait
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_HTTP_PORTS: "8080"
-      ASPNETCORE_HTTPS_PORTS: "8081"
+      ASPNETCORE_URLS: http://+:80
     image: useraccessor
+    labels:
+      com.microsoft.visual-studio.project-name: UserAccessor
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /.nuget/packages --additionalProbingPath /.nuget/fallbackpackages  "/app/UserAccessor.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: dotnet --roll-forward Major /VSTools/DistrolessHelper/DistrolessHelper.dll --stop dotnet
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
     networks:
       network-dapr: null
     ports:
       - mode: ingress
-        target: 8080
+        target: 80
+        published: "9021"
         protocol: tcp
-      - mode: ingress
-        target: 8081
-        protocol: tcp
+    tty: true
     volumes:
       - type: bind
-        source: C:\Users\shays\AppData\Roaming/Microsoft/UserSecrets
+        source: C:\Users\shays\AppData\Roaming\Microsoft\UserSecrets
         target: /home/app/.microsoft/usersecrets
         read_only: true
         bind:
           create_host_path: true
       - type: bind
-        source: C:\Users\shays\AppData\Roaming/ASP.NET/Https
+        source: C:\Users\shays\AppData\Roaming\ASP.NET\Https
         target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shays\vsdbg\vs2017u5
+        target: /remote_debugger
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming\ASP.NET\Https
+        target: /root/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming\Microsoft\UserSecrets
+        target: /root/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\linux-x64\net8.0
+        target: /VSTools
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\HotReload
+        target: /HotReloadAgent
         read_only: true
         bind:
           create_host_path: true
@@ -97,13 +189,13 @@ services:
       - -app-protocol
       - http
       - --app-port
-      - "3000"
+      - "80"
       - --dapr-http-port
-      - "3501"
-      - components-path
-      - ./dapr/components
+      - "3500"
+      - dapr run\ --enable-api-logging "components-path"
+      - /dapr/components
       - config
-      - ./dapr/config.yaml
+      - /dapr/config.yaml
     depends_on:
       useraccessor:
         condition: service_started

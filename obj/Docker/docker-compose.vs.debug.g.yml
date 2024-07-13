@@ -3,7 +3,7 @@ version: '3.4'
 services:
   manager:
     image: manager:dev
-    container_name: "Manager"
+    container_name: "Manager_1"
     build:
       args:
         BUILD_CONFIGURATION: Debug

@@ -1,4 +1,3 @@
-C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\Manager.deps.json
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\Manager.runtimeconfig.json
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\appsettings.Development.json
@@ -22,4 +21,5 @@ C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\Microsoft.O
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\Manager.pdb
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\UserAccessor.pdb
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\obj\Debug\docker-c.35A3FFBA.Up2Date
