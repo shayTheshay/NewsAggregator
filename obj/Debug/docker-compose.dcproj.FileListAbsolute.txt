@@ -23,3 +23,13 @@ C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\UserAccesso
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\obj\Debug\docker-c.35A3FFBA.Up2Date
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\MySql.Data.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\ZstdSharp.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\System.Security.Permissions.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\System.Windows.Extensions.dll
+C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\bin\Debug\System.Security.Cryptography.ProtectedData.dll

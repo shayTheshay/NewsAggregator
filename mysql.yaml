@@ -1,0 +1,23 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: mysql
+spec:
+  type: state.mysql
+  version: v1
+  metadata:
+  - name: connectionString
+    value: "user:password1@tcp(mysql:3306)/?allowNativePasswords=true"
+  - name: schemaName
+    value: "NewsUsersDB"
+  - name: tableName
+    value: "<TABLE NAME>"
+  - name: timeoutInSeconds
+    value: "30"
+  - name: pemPath # Required if pemContents not provided. Path to pem file.
+    value: "<PEM PATH>"
+  - name: pemContents # Required if pemPath not provided. Pem value.
+    value: "<PEM CONTENTS>"    
+# Uncomment this if you wish to use MySQL & MariaDB as a state store for actors (optional)
+  #- name: actorStateStore
+  #  value: "true"

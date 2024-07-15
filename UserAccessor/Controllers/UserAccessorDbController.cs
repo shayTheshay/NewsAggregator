@@ -8,12 +8,36 @@ namespace UserAccessor.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
-    public class UserAccessorDbController(ILogger<UserAccessorDbController> logger, DaprClient daprClient) : ControllerBase
+    public class UserAccessorDbController(ILogger<UserAccessorDbController> logger, DaprClient daprClient, DbContext db) : ControllerBase
     {
         private readonly ILogger<UserAccessorDbController> _logger = logger;
         private readonly DaprClient _client = daprClient;
+        private readonly DbContext _dbContext = db;
 
-        [HttpPost("/preferences")]
+        #region Preferences
+        [HttpGet("/Preferences")]
+        public async Task<List<string>> fetchPreferences(UserEmailRequest userEmail)
+        {
+            try
+            {
+
+
+                //connect DB to get the preferences of the user
+                List<string> fakeList = new List<string>
+                {
+                    "science", "sport"
+                };
+
+
+                return await Task.FromResult(new List<string> { "science", "sport" });
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpPost("/Preferences")]
         public async Task<ActionResult<UserEmailPreferenceResponse>> SetPreferences(UserEmailPreferenceRequest userEmailpreferences)
         {
             UserEmailPreferenceResponse response = new UserEmailPreferenceResponse()
@@ -38,29 +62,13 @@ namespace UserAccessor.Controllers
 
             }
         }
+        #endregion
 
-        [HttpGet("/LatestNews")]
-        public async Task<ActionResult<UserEmailResponse>> SendLatestNews(UserEmailRequest userEmail)
-        {
-            try
-            {
-                UserEmailResponse response = new UserEmailResponse()
-                {
-                    Id = 0,
-                    Email = userEmail.Email,
-                    
-                };
-                return Ok(userEmail);
-            }
+        #region User
+         
 
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
-        }
-        [HttpDelete("/DeleteUser")]
-        public async Task<ActionResult<UserEmailResponse>>? DeletePreferences(UserEmailRequest userEmail)
+        [HttpDelete("/User")]
+        public async Task<ActionResult<UserEmailResponse>> DeleteUser(UserEmailRequest userEmail)
         {
             try
             {
@@ -71,44 +79,25 @@ namespace UserAccessor.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        #endregion
 
-        /////////////////////////////////////////////Internal use functions
-        [HttpGet("/getPreferences")]
-        private async Task<List<string>> fetchPreferences(UserEmailRequest userEmail)
-        {
-            try
-            {
-
-
-                //connect DB to get the preferences of the user
-                List<string> fakeList = new List<string>
-                {
-                    "science", "sport"
-                };
-
-
-                return await Task.FromResult(new List<string> { "science", "sport"});
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        [HttpGet("/EmailExist")]
+        #region Internal
         private async Task<bool> EmailExistInDB(UserEmailRequest userEmail)
         {
             try
             {
-                return await Task.FromResult(true);
+                var query = $"SELECT * FROM NewsUsersDB.useremail WHERE email = '{userEmail.Email}'";
+                var results = await _dbContext.RunQuery(query);
+                var exists = results.HasRows;
+                results.Close();
+                return exists;
             }
             catch (Exception ex)
             {
                 return false;
             }
         }
-
+        #endregion
 
     }
 }

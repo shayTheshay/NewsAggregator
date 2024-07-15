@@ -1,3 +1,5 @@
+using UserAccessor.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +9,9 @@ builder.Services.AddControllers().AddDapr();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpLogging(o => { });
+
+builder.Services.Configure<DbSettings>(builder.Configuration.GetSection("Database"));
+builder.Services.AddSingleton<DbContext>();
 
 
 var app = builder.Build();
