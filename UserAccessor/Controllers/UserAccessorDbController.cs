@@ -38,21 +38,39 @@ namespace UserAccessor.Controllers
             }
         }
         [HttpPost("/Preferences")]
-        public async Task<ActionResult<UserEmailPreferenceResponse>> SetPreferences(UserEmailPreferenceRequest userEmailpreferences)
-        {
-            UserEmailPreferenceResponse response = new UserEmailPreferenceResponse()
-            {
-                Id = 0,
-                Email = userEmailpreferences.Email,
-                Preferences = userEmailpreferences.Preferences
-            };
-
+        public async Task<ActionResult<UserEmailPreferenceResponse>> SetPreferences(UserEmailPreferenceRequest userEmailPreferences)
+        {            
             try
             {
-                if (userEmailpreferences is null)
+                var userExist = await EmailExistInDB(userEmailPreferences.Email);
+
+
+                if (!userExist)
                 {
-                    return BadRequest("couldn't set your preferences, sorry");
+                    var queryNewUser = $"INSERT INTO NewsUsersDB.useremail VALUES {userEmailPreferences.Email}";
+                    _dbContext.RunCommand(queryNewUser);
+                    
+                    var queryUserId = $"SELECT id FROM NewsUsersDB.useremail WHERE email = {userEmailPreferences.Email}";
+                    var resultUserId = await _dbContext.RunQuery(queryUserId);    
+
+                    var queryPreferences = $"INSERT INTO NewsUsersDB.preferences VALUES {userEmailPreferences.Preferences}";
+                    _dbContext.RunCommand(queryPreferences);
+
+                    var results = await _dbContext.RunQuery(queryNewUser);
+
+                    results.Close();
+
                 }
+                else if (userExist)
+                {
+                    var queryUserId = $"SELECT id FROM NewsUsersDB.useremail WHERE email = {userEmailPreferences.Email}";
+                    var queryUpdatePreferences = $"UPDATE preferences SET preference = {userEmailPreferences.Preferences}";
+                }
+                
+
+
+                UserEmailPreferenceResponse user = new UserEmailPreferenceResponse { Email = userEmailPreferences.Email , Id = queryUserId, Preferences = userEmailPreferences.Preferences};
+
                 return response;
             }
             catch (Exception ex)
@@ -72,7 +90,13 @@ namespace UserAccessor.Controllers
         {
             try
             {
-                return null;
+                var userExist = await EmailExistInDB(userEmail);
+                if (!userExist)
+                {
+                    return NotFound();
+                }
+                
+                return Ok(userExist);//For now -> Please complete the other stuff
             }
             catch (Exception ex)
             {
@@ -97,7 +121,22 @@ namespace UserAccessor.Controllers
                 return false;
             }
         }
-        #endregion
 
+        private async Task<bool> EmailExistInDB(string email)
+        {
+            try
+            {
+                var query = $"SELECT * FROM NewsUsersDB.useremail WHERE email = '{email}'";
+                var results = await _dbContext.RunQuery(query);
+                var exists = results.HasRows;
+                results.Close();
+                return exists;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }
