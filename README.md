@@ -6,7 +6,7 @@ Each user will have an account and will be able to change the preferences at any
 
 ## Design
 ```mermaid
-    graph Design;
+graph TD;
     NewsData.io<-->NewsAPI;
     NewsAPI<-->Manager;
     Manager<-->GeminiAPI;
