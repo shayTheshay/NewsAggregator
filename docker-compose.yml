@@ -1,9 +1,117 @@
 version: '3.4'
 
+
+volumes:
+    datafiles:
+
 services:
+#manager service
   manager:
     image: ${DOCKER_REGISTRY-}manager
     build:
       context: .
       dockerfile: Manager/Dockerfile
+    networks: 
+        - network-dapr
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "9020:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
 
+#useraccessor service
+  useraccessor:
+    image: ${DOCKER_REGISTRY-}useraccessor
+    build:
+      context: .
+      dockerfile: UserAccessor/Dockerfile
+    networks:
+     - network-dapr
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "9021:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    depends_on:
+      - mysql
+
+
+  #Dapr manager service
+  manager-dapr:
+    image: "daprio/daprd:edge"
+    command: [
+      "./daprd",
+     "--app-id", "manager",
+     "-app-protocol", "http",
+     "--app-port", "80",
+     "--dapr-http-port", "3500",
+     "--placement-host-address", "placement:50006", # Dapr's placement service can be reach via the docker DNS entry 
+     dapr run\
+      --enable-api-logging
+     "components-path", "/dapr/components",
+     "config", "/dapr/config.yaml",
+
+     ]
+    volumes:
+        - "./dapr:/dapr" # Mount our components folder for the runtime to use. The mounted location must match the --resources-path argument.
+    depends_on:
+      - manager
+    network_mode: "service:manager" # Attach the manager-dapr service to the manager network namespace
+
+  #Dapr useraccessor service 
+  useraccessor-dapr:
+    image: "daprio/daprd:edge"
+    command: [
+      "./daprd",
+     "--app-id", "useraccessor",
+     "-app-protocol", "http",
+     "--app-port", "80",
+     "--dapr-http-port", "3500",
+     # "--placement-host-address", "placement:50006",
+     dapr run\
+      --enable-api-logging
+     "components-path", "/dapr/components", # Dapr's placement service can be reach via the docker DNS entry
+     "config", "/dapr/config.yaml",
+
+     ]
+    volumes:
+        - "./dapr:/dapr" # Mount our components folder for the runtime to use. The mounted location must match the --resources-path argument.
+    depends_on:
+      - useraccessor
+    network_mode: "service:useraccessor" # Attach the useraccessor-dapr service to the useraccessor network namespace
+
+   #DataBase Service -> MySQL DB connector into the application
+  mysql:
+    #Pull the latest mysql image
+    image: mysql:8.0.34
+    #Map port 3306 on the mysql container to port 3334 in the host
+    ports:
+      - "3334:3306"
+    networks:
+      - network-dapr
+    #Specify where the persisted Data should be stored
+    volumes:
+      # - datafiles:/var/lib/mysql
+      - "./setup.sql:/docker-entrypoint-initdb.d/1.sql"
+    restart: always
+    #Specify Environment Variables for mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: RootPassword
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password1
+      MYSQL_DATABASE: NewsUsersDB
+
+  # placement:
+  #   image: "daprio/dapr"
+  #   command: ["./placement", "--port", "50006"]
+  #   ports:
+  #       - "50006:50006"
+  
+networks:
+   network-dapr:

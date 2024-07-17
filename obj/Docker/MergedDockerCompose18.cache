@@ -1,0 +1,151 @@
+name: dockercompose3739172531807127721
+services:
+  manager:
+    build:
+      context: C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet
+      dockerfile: Manager/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+    image: manager
+    networks:
+      network-dapr: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "9020"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+  manager-dapr:
+    command:
+      - ./daprd
+      - --app-id
+      - manager
+      - -app-protocol
+      - http
+      - --app-port
+      - "80"
+      - --dapr-http-port
+      - "3500"
+      - --placement-host-address
+      - placement:50006
+      - dapr run\ --enable-api-logging "components-path"
+      - /dapr/components
+      - config
+      - /dapr/config.yaml
+    depends_on:
+      manager:
+        condition: service_started
+        required: true
+    image: daprio/daprd:edge
+    network_mode: service:manager
+    volumes:
+      - type: bind
+        source: C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\dapr
+        target: /dapr
+        bind:
+          create_host_path: true
+  mysql:
+    environment:
+      MYSQL_DATABASE: NewsUsersDB
+      MYSQL_PASSWORD: password1
+      MYSQL_ROOT_PASSWORD: RootPassword
+      MYSQL_USER: user
+    image: mysql:8.0.34
+    networks:
+      default: null
+    ports:
+      - mode: ingress
+        target: 3306
+        published: "3334"
+        protocol: tcp
+    restart: always
+    volumes:
+      - type: volume
+        source: datafiles
+        target: /var/lib/mysql
+        volume: {}
+      - type: bind
+        source: C:\Users\shays\sql-scripts\setup.sql
+        target: /docker-entrypoint-initdb.d/1.sql
+        bind:
+          create_host_path: true
+  useraccessor:
+    build:
+      context: C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet
+      dockerfile: UserAccessor/Dockerfile
+    depends_on:
+      mysql:
+        condition: service_started
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+    image: useraccessor
+    networks:
+      network-dapr: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "9021"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\shays\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+  useraccessor-dapr:
+    command:
+      - ./daprd
+      - --app-id
+      - useraccessor
+      - -app-protocol
+      - http
+      - --app-port
+      - "80"
+      - --dapr-http-port
+      - "3500"
+      - dapr run\ --enable-api-logging "components-path"
+      - /dapr/components
+      - config
+      - /dapr/config.yaml
+    depends_on:
+      useraccessor:
+        condition: service_started
+        required: true
+    image: daprio/daprd:edge
+    network_mode: service:useraccessor
+    volumes:
+      - type: bind
+        source: C:\Users\shays\Desktop\TsionetProjects\FinalProjectTsionet\dapr
+        target: /dapr
+        bind:
+          create_host_path: true
+networks:
+  default:
+    name: dockercompose3739172531807127721_default
+  network-dapr:
+    name: dockercompose3739172531807127721_network-dapr
+volumes:
+  datafiles:
+    name: dockercompose3739172531807127721_datafiles

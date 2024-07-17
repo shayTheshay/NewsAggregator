@@ -1,0 +1,6 @@
+@UserAccessor_HostAddress = http://localhost:5155
+
+GET {{UserAccessor_HostAddress}}/useraccessorconnection/
+Accept: application/json
+
+###

@@ -3,102 +3,69 @@ using Microsoft.AspNetCore.Mvc;
 using Dapr.Client;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Manager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController(ILogger<UserController> logger, Dapr.Client.DaprClient daprClient) : ControllerBase
     {
+        private readonly ILogger <UserController> _logger = logger;
+        private readonly DaprClient _daprclient = daprClient;
 
-        private readonly ILogger <UserController> _logger;
-        private readonly DaprClient _client;
-
-        public UserController(ILogger<UserController> logger, Dapr.Client.DaprClient client)
-        {
-            _logger = logger;
-            _client = client;
-        }
-
-        [HttpPatch("/SetPreferences")]
-        public string SetPreferences(UserEmailPreferenceRequest requestUserValues)
+        [HttpPost("SetPreferences")]
+        public async Task<ActionResult<UserEmailPreferenceResponse>> SetPreferences([FromQuery]UserEmailPreferenceRequest userValuesRequest)
         {
             try
             {
-
-                //Check if the strings gotten are compliant with what I want like sport, science etc...
-
-
-                //check if the userEmail doesn't exist, if it does not than make one and then set the preferences. This happens on UserAccessor
-
-                return "Your preferences were set!";
+                var response = await _daprclient.InvokeMethodAsync<UserEmailPreferenceRequest, UserEmailPreferenceResponse?>("useraccessor", "/preferences", userValuesRequest);
+                if (response == null)
+                {
+                    return BadRequest(response);
+                }
+                return Ok("Your Preferences were set");
             }
             catch (Exception ex)
             {
-                _logger.LogInformation("SetPreferences error: " + ex.Message);
-                return ex.Message;
-
+                _logger.LogError("SetPreferences error: {ex}", ex.Message);
+                return Problem("There was a problem setting the user preferences");
             }
         }
 
-        
-
-        [HttpGet("/GetYourPreferences")]
-        public string getPreferences(string email)
-        {
-            try
-            {
-                return "Here are your preferences!";
-            }
-            catch (Exception ex)
-            {
-                _logger.LogInformation("GettingPreferences error: " + ex.Message);
-                return ex.Message;
-
-            }
-            //Check for the email through accesssor -> if exists one
-        }
 
 
         [HttpGet("/LatestNews")]
-        public string FetchLatestNews(string userMail)
+        public async Task<ActionResult<UserEmailResponse>> FetchLatestNews([FromQuery]UserEmailRequest userEmail)
         {
             try
             {
-                return "The latest news were sent to your Email!";
+                var response = await _daprclient.InvokeMethodAsync<UserEmailRequest, UserEmailResponse?>(HttpMethod.Get, "useraccessor", "/LatestNews", userEmail);
+                return Ok("The latest news were sent to your Email!");
             }
 
             catch (Exception ex)
             {
-                _logger.LogInformation("LatestNews error: " + ex.Message);
-                return ex.Message;
+                _logger.LogError("LatestNews error: {ex}", ex.Message);
+                return Problem("The news could not be sent to your email at this time");
             }
         }
-
-       /*
-            setPreferences -> Accessor -> DB -> Accessor -> Manager ->Ok ro created which is Okay
-            UpdatePreferences -> Accessor -> DB -> Accessor -> Manager -> OK
-
-            fetchLatestNews -> Accessor -> DB ->Accessor ->Manager -> 
-        */
-
 
 
         [HttpDelete("/DeleteUser")]
-        public string DeleteUser(string userMail)
+        public async Task<ActionResult<bool>> DeleteUser([FromQuery]UserEmailRequest userEmail)
         {
             try
             {
-                return "User Deleted!";
+                var response = await _daprclient.InvokeMethodAsync<UserEmailRequest, bool>(HttpMethod.Delete, "useraccessor", "/User", userEmail);
+                if (response == false)
+                    return Ok("The user could not be deleted");
+                return Ok("user deleted");
             }
             catch (Exception ex)
             {
-                _logger.LogInformation("DeleteUser error: " + ex.Message);
-                return ex.Message;
+                _logger.LogError("DeleteUser error: " + ex.Message);
+                return Problem("User was not deleted from DB");
             }
-
         }
- 
 
     }
 }
