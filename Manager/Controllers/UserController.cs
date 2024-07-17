@@ -1,11 +1,8 @@
 ﻿using Manager.Models;
 using Microsoft.AspNetCore.Mvc;
 using Dapr.Client;
-using System.Threading;
-using System.ComponentModel.DataAnnotations;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace Manager.Controllers
 {
     [Route("api/[controller]")]
@@ -54,13 +51,13 @@ namespace Manager.Controllers
 
 
         [HttpDelete("/DeleteUser")]
-        public async Task<ActionResult<UserEmailResponse>> DeleteUser([FromQuery]UserEmailRequest userEmail)
+        public async Task<ActionResult<bool>> DeleteUser([FromQuery]UserEmailRequest userEmail)
         {
             try
             {
-                var response = await _daprclient.InvokeMethodAsync<UserEmailRequest, UserEmailResponse?>(HttpMethod.Delete, "useraccessor", "/DeleteUser", userEmail);
-                if (response == null)
-                    return Ok("There was no User to begin with");
+                var response = await _daprclient.InvokeMethodAsync<UserEmailRequest, bool>(HttpMethod.Delete, "useraccessor", "/User", userEmail);
+                if (response == false)
+                    return Ok("The user could not be deleted");
                 return Ok("user deleted");
             }
             catch (Exception ex)
