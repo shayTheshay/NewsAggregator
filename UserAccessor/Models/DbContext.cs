@@ -20,13 +20,17 @@ namespace UserAccessor.Models
             cmd.Parameters.AddRange(parameters);
             await cmd.ExecuteNonQueryAsync();
         }
-        public async Task<T> RunQuerySingleAsync<T>(string query, params MySqlParameter[] parameters)
+        public async Task<T> RunQuerySingleAsync<T>(string query, params MySqlParameter[] parameters) where T : notnull
         {
             using var connection = new MySqlConnection(_connectionString);
             await connection.OpenAsync();
             using var cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddRange(parameters);
             var result = await cmd.ExecuteScalarAsync();
+            if (result is null)
+            {
+                throw new Exception("You returned NULL");
+            }
             return (T)Convert.ChangeType(result, typeof(T));
         }
 
