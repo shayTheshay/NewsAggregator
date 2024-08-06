@@ -38,8 +38,17 @@ namespace Manager.Controllers
         {
             try
             {
-                var response = await _daprclient.InvokeMethodAsync<UserEmailRequest, UserEmailResponse?>(HttpMethod.Get, "useraccessor", "/LatestNews", userEmail);
+                //Brings the preferences of the specific user
+                UserPreferencesResponse responsePreferences = await _daprclient.InvokeMethodAsync<UserEmailRequest, UserPreferencesResponse>(HttpMethod.Get, "useraccessor", "/Preferences", userEmail);
+                //Requests latest news from News.io
+                List<string> latestNews = await _daprclient.InvokeMethodAsync<UserPreferencesResponse, List<string>>(HttpMethod.Get, "newsapi", "/LatestNews", responsePreferences);
+                //Send the Preferences and the latest news to gemini AI api.
+                
+                //Send the latest News Based on preferences to Email of the User
+                
+                
                 return Ok("The latest news were sent to your Email!");
+                
             }
 
             catch (Exception ex)

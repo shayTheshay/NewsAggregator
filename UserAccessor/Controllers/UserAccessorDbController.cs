@@ -1,4 +1,5 @@
 ﻿using Dapr.Client;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using UserAccessor.Models;
@@ -16,7 +17,7 @@ namespace UserAccessor.Controllers
 
         #region Preferences
         [HttpGet("/Preferences")]
-        public async Task<List<string>> FetchPreferences(UserEmailRequest userEmail)
+        public async Task<UserPreferencesResponse> FetchPreferences(UserEmailRequest userEmail)
         {
             try
             {
@@ -28,19 +29,26 @@ namespace UserAccessor.Controllers
                         new MySqlParameter("@Email", userEmail.Email));
 
                     var preferences = await _dbContext.RunQueryAsync<string>(
-                        "SELECT preference FROM NewsUsersDB.Preferences WHERE id =@Id",
+                        "SELECT preference FROM NewsUsersDB.preferences WHERE id =@Id",
                         new MySqlParameter("@Id", userId)
-                        );
-                    return preferences;
+                    );
+
+                    return new UserPreferencesResponse { Id = userId, Preferences = preferences };
                 }
+
                 else
-                    return [];
+                {
+                    List<string> empty = [];
+                    return new UserPreferencesResponse { Id = 0, Preferences = empty };
+
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
         [HttpPost("/Preferences")]
         public async Task<ActionResult<UserEmailPreferenceResponse>> SetPreferences(UserEmailPreferenceRequest userEmailPreferences)
         {

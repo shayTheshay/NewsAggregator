@@ -1,0 +1,6 @@
+@NewsAPI_HostAddress = http://localhost:5036
+
+GET {{NewsAPI_HostAddress}}/newsapiconnection/
+Accept: application/json
+
+###

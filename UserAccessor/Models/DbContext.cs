@@ -20,6 +20,9 @@ namespace UserAccessor.Models
             cmd.Parameters.AddRange(parameters);
             await cmd.ExecuteNonQueryAsync();
         }
+
+        //Repeat and understand this line
+        //Put some helpful notes here
         public async Task<T> RunQuerySingleAsync<T>(string query, params MySqlParameter[] parameters) where T : notnull
         {
             using var connection = new MySqlConnection(_connectionString);
