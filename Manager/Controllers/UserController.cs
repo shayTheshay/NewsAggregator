@@ -12,6 +12,7 @@ namespace Manager.Controllers
         private readonly ILogger <UserController> _logger = logger;
         private readonly DaprClient _daprclient = daprClient;
 
+        #region Preferences
         [HttpPost("SetPreferences")]
         public async Task<ActionResult<UserEmailPreferenceResponse>> SetPreferences([FromQuery]UserEmailPreferenceRequest userValuesRequest)
         {
@@ -30,18 +31,24 @@ namespace Manager.Controllers
                 return Problem("There was a problem setting the user preferences");
             }
         }
+        #endregion
 
-
-
+        #region News
         [HttpGet("/LatestNews")]
         public async Task<ActionResult<UserEmailResponse>> FetchLatestNews([FromQuery]UserEmailRequest userEmail)
         {
             try
             {
+                //Check if the user existfor fetching the Preferences
+                
                 //Brings the preferences of the specific user
                 UserPreferencesResponse responsePreferences = await _daprclient.InvokeMethodAsync<UserEmailRequest, UserPreferencesResponse>(HttpMethod.Get, "useraccessor", "/Preferences", userEmail);
+                if( responsePreferences.Preferences.Count == 0)
+                    return Ok("There is no email in that format for NewsAggregator");
                 //Requests latest news from News.io
                 List<string> latestNews = await _daprclient.InvokeMethodAsync<UserPreferencesResponse, List<string>>(HttpMethod.Get, "newsapi", "/LatestNews", responsePreferences);
+                if (latestNews.Count == 0)
+                    return Ok("There are no news for this category at this time");
                 //Send the Preferences and the latest news to gemini AI api.
                 
                 //Send the latest News Based on preferences to Email of the User
@@ -57,8 +64,9 @@ namespace Manager.Controllers
                 return Problem("The news could not be sent to your email at this time");
             }
         }
+        #endregion
 
-
+        #region user
         [HttpDelete("/DeleteUser")]
         public async Task<ActionResult<bool>> DeleteUser([FromQuery]UserEmailRequest userEmail)
         {
@@ -75,6 +83,6 @@ namespace Manager.Controllers
                 return Problem("User was not deleted from DB");
             }
         }
-
+        #endregion 
     }
 }
