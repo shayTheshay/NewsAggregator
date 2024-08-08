@@ -33,4 +33,9 @@ namespace Manager.Models
         public required int Id { get; set; }
         public required List<string> Preferences { get; set; } = new List<string>();
     }
+    public class NewsResponse
+    {
+        public required string newsContent { get; set; }
+        public required string newsLink { get; set; }
+    }
 }

@@ -45,13 +45,15 @@ namespace Manager.Controllers
                 UserPreferencesResponse responsePreferences = await _daprclient.InvokeMethodAsync<UserEmailRequest, UserPreferencesResponse>(HttpMethod.Get, "useraccessor", "/Preferences", userEmail);
                 if( responsePreferences.Preferences.Count == 0)
                     return Ok("There is no email in that format for NewsAggregator");
-                //Requests latest news from News.io
-                List<string> latestNews = await _daprclient.InvokeMethodAsync<UserPreferencesResponse, List<string>>(HttpMethod.Get, "newsapi", "/LatestNews", responsePreferences);
+                //Requests latest news from News.io -> I have the free plan so I cannot access the Content attribute.
+                List<NewsResponse> latestNews = await _daprclient.InvokeMethodAsync<UserPreferencesResponse, List<NewsResponse>>(HttpMethod.Get, "newsapi", "/LatestNews", responsePreferences);
                 if (latestNews.Count == 0)
                     return Ok("There are no news for this category at this time");
-                //Send the Preferences and the latest news to gemini AI api.
+                //Send the Preferences(maybe)? and the latest news to gemini AI api to summarize them -> Check if I want to extract the strings from the names 
                 
-                //Send the latest News Based on preferences to Email of the User
+
+
+                //Send the summarized news Based on preferences to Email of the User
                 
                 
                 return Ok("The latest news were sent to your Email!");

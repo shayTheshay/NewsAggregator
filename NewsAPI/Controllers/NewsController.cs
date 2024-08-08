@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Net.Http.Json;
 using System.Text.Json;
 
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace NewsAPI.Controllers
@@ -16,24 +17,23 @@ namespace NewsAPI.Controllers
  
     public class NewsController(ILogger<NewsController> logger, Dapr.Client.DaprClient daprClient) : ControllerBase
     {
-        private static readonly HttpClient _httpClient = new HttpClient();
+        private static readonly HttpClient _httpClient = new HttpClient();//Instantiate an Http connection that is used as static as to not create a number of connections
         private readonly ILogger<NewsController> logger = logger;
         private readonly DaprClient daprClient = daprClient;
 
         #region News
         [HttpGet("/LatestNews")]
-        public async Task<List<string>> FetchLatestNews(UserPreferencesResponse userPreferences)
+        public async Task<List<NewsResponse>> FetchLatestNews(UserPreferencesResponse userPreferences)
         {
             try
             {
-
                 //Send here the request -> Maybe use the Function in another way.
                 string newsdataApiKey = "pub_501498fa10d8e6a1229d04a3504e9d644cd39";// Find a way to hide it somewhere
 
                 string preferencesString = ListOfStringTostring(userPreferences.Preferences);
                 string requestUrl = $"https://newsdata.io/api/1/latest?apikey={newsdataApiKey}&category={preferencesString}&language=en";//Needs to make the preferences a single string from a list probably
 
-                using HttpResponseMessage response = await _httpClient.GetAsync(requestUrl);
+                using HttpResponseMessage response = await _httpClient.GetAsync(requestUrl);//Keeping the status att -> maybe use in future.
                 response.EnsureSuccessStatusCode();
 
                 string responseBody = await response.Content.ReadAsStringAsync();
@@ -44,35 +44,34 @@ namespace NewsAPI.Controllers
                 //string url = "shay";//function to arrange the url accordinly
                 if (newsData != null)
                 {
-                    foreach (var item in newsData.results)
+
+                    List<NewsResponse> newsList = new List<NewsResponse>();
+                    //According to documentation the "Content" attribute is blocked for non paid subscriptions(according https://newsdata.io/changelog in Dec 01, 2023) to  and returns the string "ONLY AVAILABLE IN PAID PLANS"
+                    foreach ( var item in newsData.results)
                     {
-                        Console.WriteLine($"Title: {item.title}");
-                        Console.WriteLine($"Content: {item.content}");
-                        Console.WriteLine($"Published Date: {item.pubDate}");
-                        Console.WriteLine("---");
-                    }
+                        newsList.Add(new NewsResponse
+                        {
+                            newsContent = "title:" + item.title + " " + "description:" + item.description, 
+                            newsLink = item.link
+                        });
+                    }//Brings 10 latest news(maximum of 10 according to the documentation)
+                    return newsList;
                 }
-                List<string> list = new List<string>();
-                return list;
+                List<NewsResponse> emptyList = new List<NewsResponse>();
+                return emptyList;
             }
             catch (HttpRequestException ex)
             {
                 // Log the exception
                 Console.WriteLine($"HTTP Request Error: {ex.Message}");
-                return new List<string>();
+                return new List<NewsResponse>();
             }
             catch (Exception ex)
             {
                 throw;
             }
         }
-
-
         #endregion
-        /*
-         * 
-         * https://newsdata.io/api/1/latest?apikey=YOUR_API_KEY&q=donald%20trump&region=washington-united%20states%20of%20america
-         */
 
         #region Internal
         private string ListOfStringTostring(List<string> list)
@@ -102,9 +101,6 @@ namespace NewsAPI.Controllers
                 throw ;
             }
         }
-
-
         #endregion
-
     }
 }

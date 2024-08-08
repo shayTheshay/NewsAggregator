@@ -2,20 +2,20 @@
 {
     public class NewsDataioResponse
     {
-
-        public string status { get; set; }
-        public int totalResults { get; set; }
-        public List<NewsItem> results { get; set; }
-        public string? nextPage { get; set; }
+        public required string status { get; set; }
+        public required List<NewsItem> results { get; set; }
     }
     public class NewsItem
     {
-        public string title { get; set; }
-        public string description { get; set; }
-        public string content { get; set; }
-        public string? pubDate { get; set; }
-        public string? link { get; set; }
-        public List<string> category { get; set; }
+        public string? title { get; set; }
+        public string? description { get; set; }
+        public string? content { get; set; }
+        public required string link { get; set; }
     }
 
+    public class NewsResponse
+    {
+        public required string newsContent { get; set; }
+        public required string newsLink { get; set; }
+    }
 }
