@@ -2,7 +2,7 @@ version: '3.9'
 volumes:
     datafiles:
 
-services:
+services: # SERVICES
 #manager service
   manager:
     image: ${DOCKER_REGISTRY-}manager
@@ -55,6 +55,25 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro 
+
+#SummarizeAPI service
+  summarizeapi:
+    image: ${DOCKER_REGISTRY-}summarizeapi
+    build:
+      context: .
+      dockerfile: SummarizeAPI/Dockerfile
+    networks: 
+        - network-dapr
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "9023:80"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro 
+
+      # DAPR SERVICES
 
   #Dapr manager service
   manager-dapr:
@@ -120,6 +139,27 @@ services:
       - newsapi
    network_mode: "service:newsapi" # Attach the newsapi-dapr service to the newsapi network namespace
     
+   #Dapr summarizeapi service
+  summrizeapi-dapr:
+   image: "daprio/daprd:edge"
+   command: [
+    "./daprd",
+    "--app-id", "summarizeapi",
+    "-app-protocol", "http",
+    "--app-port", "80",
+    "--dapr-http-port", "3500",
+    dapr run\
+    --enable-api-logging
+    "components-path", "/dapr/components",
+    "config", "/dapr/config.yaml",
+   ]
+   volumes:
+        - "./dapr:/dapr" # Mount our components folder for the runtime to use. The mounted location must match the --resources-path argument.
+   depends_on:
+      - summarizeapi
+   network_mode: "service:summarizeapi" # Attach the summarizeapi-dapr service to the summarizeapi network namespace
+
+
   #DataBase Service -> MySQL DB connector into the application
   mysql:
     #Pull the latest mysql image

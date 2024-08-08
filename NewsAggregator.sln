@@ -18,6 +18,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsAPI", "NewsAPI\NewsAPI.csproj", "{4FA952DB-76DB-4A29-A5AE-7BD77C954275}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SummarizeAPI", "SummarizeAPI\SummarizeAPI.csproj", "{658DB9D9-036E-4039-A4E0-BE1CC308FDC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,10 @@ Global
 		{4FA952DB-76DB-4A29-A5AE-7BD77C954275}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FA952DB-76DB-4A29-A5AE-7BD77C954275}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FA952DB-76DB-4A29-A5AE-7BD77C954275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{658DB9D9-036E-4039-A4E0-BE1CC308FDC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{658DB9D9-036E-4039-A4E0-BE1CC308FDC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{658DB9D9-036E-4039-A4E0-BE1CC308FDC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{658DB9D9-036E-4039-A4E0-BE1CC308FDC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

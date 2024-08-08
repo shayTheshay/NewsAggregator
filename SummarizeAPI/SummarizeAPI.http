@@ -1,0 +1,6 @@
+@SummarizeAPI_HostAddress = http://localhost:5227
+
+GET {{SummarizeAPI_HostAddress}}/summarizeapi/
+Accept: application/json
+
+###
