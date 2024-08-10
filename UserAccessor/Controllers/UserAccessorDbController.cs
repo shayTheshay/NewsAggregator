@@ -1,4 +1,5 @@
-﻿using Dapr.Client;
+﻿using Dapr;
+using Dapr.Client;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
@@ -16,39 +17,7 @@ namespace UserAccessor.Controllers
         private readonly DbContext _dbContext = db;
 
         #region Preferences
-        [HttpGet("/Preferences")]
-        public async Task<UserPreferencesResponse> FetchPreferences(UserEmailRequest userEmail)
-        {
-            try
-            {
-                var userExist = await EmailExistInDB(userEmail.Email);
-                if (userExist)
-                {
-                    var userId = await _dbContext.RunQuerySingleAsync<int>(
-                        "SELECT id FROM NewsUsersDB.useremail WHERE email = @Email",
-                        new MySqlParameter("@Email", userEmail.Email));
-
-                    var preferences = await _dbContext.RunQueryAsync<string>(
-                        "SELECT preference FROM NewsUsersDB.preferences WHERE id =@Id",
-                        new MySqlParameter("@Id", userId)
-                    );
-
-                    return new UserPreferencesResponse { Id = userId, Preferences = preferences };
-                }
-
-                else
-                {
-                    List<string> empty = [];
-                    return new UserPreferencesResponse { Id = 0, Preferences = empty };
-
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
+        [Topic("userPreferencesSubscription", "userPreferences")]
         [HttpPost("/Preferences")]
         public async Task<ActionResult<UserEmailPreferenceResponse>> SetPreferences(UserEmailPreferenceRequest userEmailPreferences)
         {
@@ -95,6 +64,41 @@ namespace UserAccessor.Controllers
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }
+
+        [HttpGet("/Preferences")]
+        public async Task<UserPreferencesResponse> FetchPreferences(UserEmailRequest userEmail)
+        {
+            try
+            {
+                var userExist = await EmailExistInDB(userEmail.Email);
+                if (userExist)
+                {
+                    var userId = await _dbContext.RunQuerySingleAsync<int>(
+                        "SELECT id FROM NewsUsersDB.useremail WHERE email = @Email",
+                        new MySqlParameter("@Email", userEmail.Email));
+
+                    var preferences = await _dbContext.RunQueryAsync<string>(
+                        "SELECT preference FROM NewsUsersDB.preferences WHERE id =@Id",
+                        new MySqlParameter("@Id", userId)
+                    );
+
+                    return new UserPreferencesResponse { Id = userId, Preferences = preferences };
+                }
+
+                else
+                {
+                    List<string> empty = [];
+                    return new UserPreferencesResponse { Id = 0, Preferences = empty };
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         #endregion
 
         #region User

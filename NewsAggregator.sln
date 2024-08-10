@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{7BB1BEFF-B
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{4D3C98E3-C5E9-4C1A-BF12-C446525FB664}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\components\pubsub.yaml = dapr\components\pubsub.yaml
+		subscription.yaml = subscription.yaml
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NewsAPI", "NewsAPI\NewsAPI.csproj", "{4FA952DB-76DB-4A29-A5AE-7BD77C954275}"
 EndProject

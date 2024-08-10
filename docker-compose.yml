@@ -19,6 +19,8 @@ services:
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    depends_on:
+      - rabbitmq
 
 #useraccessor service
   useraccessor:
@@ -140,6 +142,26 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: password1
       MYSQL_DATABASE: NewsUsersDB
+
+  #Broker Service -> Queue for manager into every other microservice(queue of requests)
+  rabbitmq:
+    #Pull the latest RabbitMQ(until the app is finished)
+    image: 'rabbitmq:latest'
+    ports:
+      # The standard AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
+    networks:
+      - network-dapr
+    environment:
+      # The location of the RabbitMQ server.  "amqp" is the protocol;
+      # "rabbitmq" is the hostname.  Note that there is not a guarantee
+      # that the server will start first!  Telling the pika client library
+      # to try multiple times gets around this ordering issue.
+      AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
 
   # placement:
   #   image: "daprio/dapr"

@@ -18,11 +18,8 @@ namespace Manager.Controllers
         {
             try
             {
-                var response = await _daprclient.InvokeMethodAsync<UserEmailPreferenceRequest, UserEmailPreferenceResponse?>("useraccessor", "/preferences", userValuesRequest);
-                if (response == null)
-                {
-                    return BadRequest(response);
-                }
+                //var response = await _daprclient.InvokeMethodAsync<UserEmailPreferenceRequest, UserEmailPreferenceResponse?>("useraccessor", "/preferences", userValuesRequest);
+                await _daprclient.PublishEventAsync("pubsub", "userPreferences", userValuesRequest); //Working on the Pub-Sub
                 return Ok("Your Preferences were set");
             }
             catch (Exception ex)
